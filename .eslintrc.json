@@ -6,9 +6,10 @@
   },
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "amd": true
   },
-  "extends": ["plugin:react/recommended", "eslint:recommended"],
+  "extends": ["plugin:react/recommended", "standard"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -18,6 +19,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-eval": ["error", { "allowIndirect": true }] // default is false
     // "react/prop-types": "off",
     // "react/react-in-jsx-scope": "off"
   }
