@@ -103,7 +103,11 @@ class Calculator extends Component {
           .replace(/,/g, '');
         try {
           res = evaluate(str);
-        } catch (error) {}
+        } catch (error) {
+          res = '0';
+        }
+
+        if (!res) res = '0';
 
         arr = [res];
         this.setState({
