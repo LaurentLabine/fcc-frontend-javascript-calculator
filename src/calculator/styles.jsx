@@ -25,8 +25,8 @@ export default createGlobalStyle`
         display: flex;
         position: absolute;
         padding: 10px;
-        height: 20rem;
-        width: 20rem;
+        ${'' /* height: 20rem; */}
+        width: 30vw;
         border-radius: 5px;
         border: 2px solid white;
         text-align: center;
@@ -35,31 +35,43 @@ export default createGlobalStyle`
         background-position: center;
     }
 
-    #display {
+    #outerDisplay {
+        width: 30vw;
         grid-column : 1/5;
         font-family: 'Bubblegum Sans', cursive;
-        font-size: 25px;
         background-color: #1D16A0;
         color: green;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    .display-grid-item {
+        display: block;
+        text-align: center;
+        vertical-align: center;
     }
 
-    #display #memory{
-        text-align: right;
+    #uppderDisplay{
+        min-height: 20px;
+        font-family: digital;
         font-size: 20px;
-        height: 24px;
-        ${'' /* background-color: black; */}
+        color: orange;
+        text-align: right;
+        vertical-align: text-top;
+        line-height: 20px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
     } 
 
-    #display #current{
+    #display{
     color: light-green;
-    height: 30px;
+    font-size: 32px !important;
     } 
 
 
     #outer {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        grid-gap: 10px;
+        ${'' /* grid-gap: 10px; */}
         position: relative;
         left:0;
         right:0;
@@ -75,6 +87,8 @@ export default createGlobalStyle`
         text-align: center;
         vertical-align: center;
     }
+
+
 
     #clear {
         grid-column: 1 / 3;

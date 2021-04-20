@@ -83,6 +83,7 @@ class Calculator extends Component {
       x: '', // Current Number Being treated
       data: [], //
       display: '', // displayed Input
+      memory: '',
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -90,19 +91,21 @@ class Calculator extends Component {
 
   limitReached() {
     let prevMsg = '';
-    if (!this.state.display.startsWith('Limit Reached')) {
-      prevMsg = this.state.display;
-      this.setState({
-        display: 'Limit Reached',
-      });
-      setTimeout(
-        function () {
-          // Start the timer
-          this.setState({ display: prevMsg }); // After 1 second, set render to true
-        }.bind(this),
-        1000
-      );
-    }
+    try {
+      if (!this.state.display.startsWith('Limit Reached')) {
+        prevMsg = this.state.display;
+        this.setState({
+          display: 'Limit Reached',
+        });
+        setTimeout(
+          function () {
+            // Start the timer
+            this.setState({ display: prevMsg }); // After 1 second, set render to true
+          }.bind(this),
+          1000
+        );
+      }
+    } catch (error) {}
   }
 
   handleInput(e) {
@@ -111,24 +114,23 @@ class Calculator extends Component {
     let res = '';
     let arr = [];
 
-    console.log('State : ' + this.state.x);
-
     const evaluate = eval;
     switch (input) {
       case 'equals':
-        str = this.filterResult(this.state.data.concat(this.state.x))
+        str = this.filterInput(this.state.data.concat(this.state.x))
           .join('')
           .replace(/,/g, '');
         try {
           res = evaluate(str);
-          arr = [res];
-        } catch (error) {
-          res = 'ERROR';
-        }
+        } catch (error) {}
+        console.log('RES : ' + res);
+
+        arr = [res];
         this.setState({
           display: res,
           data: arr,
           x: '',
+          memory: this.state.memory + '=' + res,
         });
 
         break;
@@ -137,14 +139,16 @@ class Calculator extends Component {
           x: '',
           data: [],
           display: '0',
+          memory: '',
         });
         break;
       case 'decimal':
-        if (this.state.display.length < 14) {
+        if (this.state.display.length < 16) {
           if (!this.state.x.includes('.')) {
             this.setState({
               x: this.state.x + '.',
               display: this.state.display + '.',
+              memory: this.state.memory + '.',
             });
           }
         } else {
@@ -153,7 +157,7 @@ class Calculator extends Component {
         break;
       default:
         if (inputs[input]) {
-          if (this.state.display.length < 14) {
+          if (this.state.display.length < 16) {
             this.handleDigit(input);
           } else {
             this.limitReached();
@@ -169,7 +173,7 @@ class Calculator extends Component {
   // If 2 or more operators are entered consecutively, the operation performed
   // should be the last operator entered (excluding the negative (-) sign.
 
-  filterResult(inpArr) {
+  filterInput(inpArr) {
     let tmpOprArr = [];
     const resArr = [];
 
@@ -198,36 +202,52 @@ class Calculator extends Component {
     return resArr;
   }
 
-  setTest() {
-    this.setState({
-      data: ['5', '*', '-', '+', '5'],
-    });
-  }
-
   handleDigit(digit) {
+    let newX;
+    let newDisplay;
+    let newMemory;
+
     if (this.state.display === '0') {
-      this.setState({
-        x: inputs[digit],
-        display: inputs[digit],
-      });
+      newX = inputs[digit];
+      newDisplay = inputs[digit];
+      newMemory = this.state.memory + inputs[digit];
     } else {
-      this.setState({
-        x: this.state.x + inputs[digit],
-        display: this.state.display + inputs[digit],
-      });
+      newX = this.state.x + inputs[digit];
+      newDisplay = this.state.display + inputs[digit];
+      newMemory = this.state.memory + inputs[digit];
     }
+
+    const firstDigit = newDisplay[0];
+
+    if (!(firstDigit >= '0' && firstDigit <= '9')) {
+      newDisplay = newDisplay.slice(1);
+    }
+
+    this.setState({
+      x: newX,
+      display: newDisplay,
+      memory: newMemory,
+    });
   }
 
   handleOperator(operator) {
     const tmpArr = this.state.data;
+    let memory = '';
 
     if (this.state.x !== '') tmpArr.push(this.state.x);
+
+    if (this.state.memory.includes('=')) {
+      memory = this.state.display + operator;
+    } else {
+      memory = this.state.memory + operator;
+    }
 
     tmpArr.push(operator);
     this.setState({
       data: tmpArr,
       display: operator,
       x: '',
+      memory: memory,
     });
   }
 
@@ -236,9 +256,13 @@ class Calculator extends Component {
       <div id="calculator">
         <GlobalStyle />
         <div id="outer">
-          <div id="display" className="grid-item">
-            <div id="memory">{this.state.display}</div>
-            <div id="current">{this.state.display}</div>
+          <div id="outerDisplay" className="grid-item">
+            <div id="uppderDisplay" className="display-grid-item">
+              {this.state.memory}
+            </div>
+            <div id="display" className="display-grid-item">
+              {this.state.display}
+            </div>
           </div>
           <Operator id="clear" operation="CL" handler={this.handleInput} />
           <Operator id="divide" operation="/" handler={this.handleInput} />
