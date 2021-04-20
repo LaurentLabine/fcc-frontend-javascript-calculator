@@ -9,7 +9,11 @@
     "es2021": true,
     "amd": true
   },
-  "extends": ["plugin:react/recommended", "standard"],
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
