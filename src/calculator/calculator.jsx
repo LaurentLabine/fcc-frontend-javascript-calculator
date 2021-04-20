@@ -81,31 +81,12 @@ class Calculator extends Component {
     super(props);
     this.state = {
       x: '', // Current Number Being treated
-      data: [], //
+      data: [], // Formula
       display: '', // displayed Input
-      memory: '',
+      memory: '', // Upper Display
     };
 
     this.handleInput = this.handleInput.bind(this);
-  }
-
-  limitReached() {
-    let prevMsg = '';
-    try {
-      if (!this.state.display.startsWith('Limit Reached')) {
-        prevMsg = this.state.display;
-        this.setState({
-          display: 'Limit Reached',
-        });
-        setTimeout(
-          function () {
-            // Start the timer
-            this.setState({ display: prevMsg }); // After 1 second, set render to true
-          }.bind(this),
-          1000
-        );
-      }
-    } catch (error) {}
   }
 
   handleInput(e) {
@@ -123,14 +104,13 @@ class Calculator extends Component {
         try {
           res = evaluate(str);
         } catch (error) {}
-        console.log('RES : ' + res);
 
         arr = [res];
         this.setState({
           display: res,
           data: arr,
           x: '',
-          memory: this.state.memory + '=' + res,
+          memory: str + '=' + res,
         });
 
         break;
@@ -157,11 +137,7 @@ class Calculator extends Component {
         break;
       default:
         if (inputs[input]) {
-          if (this.state.display.length < 16) {
-            this.handleDigit(input);
-          } else {
-            this.limitReached();
-          }
+          this.handleDigit(input);
         } else {
           this.handleOperator(operators[input]);
         }
@@ -236,6 +212,7 @@ class Calculator extends Component {
 
     if (this.state.x !== '') tmpArr.push(this.state.x);
 
+    // If the display already contains a full airthmetic operation, Refresh it.  Otherwise keep adding.
     if (this.state.memory.includes('=')) {
       memory = this.state.display + operator;
     } else {
