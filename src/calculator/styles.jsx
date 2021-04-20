@@ -1,13 +1,29 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
 export default createGlobalStyle`
+
+@font-face {
+  font-family: 'Digital';
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot');
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7')
+      format('svg');
+}
+
     #root {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
-    font-family: "Roboto";
+    font-family: 'digital';
     }
 
     html {
@@ -25,21 +41,20 @@ export default createGlobalStyle`
         display: flex;
         position: absolute;
         padding: 10px;
-        ${'' /* height: 20rem; */}
-        width: 30vw;
+        background-color: black;
+        width: 40vw;
         border-radius: 5px;
         border: 2px solid white;
         text-align: center;
-        background-image: url("https://user-images.githubusercontent.com/20836468/115257250-2ec38600-a130-11eb-8964-ce296652a0b1.jpg");
         background-size: 100%;
         background-position: center;
     }
 
     #outerDisplay {
-        width: 30vw;
+        min-height: 62px;
+        width: 40vw;
         grid-column : 1/5;
-        font-family: 'Bubblegum Sans', cursive;
-        background-color: #1D16A0;
+        background-color: white;
         color: green;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -64,7 +79,6 @@ export default createGlobalStyle`
 
     #display{
     color: light-green;
-    font-size: 32px !important;
     } 
 
 
@@ -76,7 +90,7 @@ export default createGlobalStyle`
         left:0;
         right:0;
         width:100%;
-        ${'' /* height: 80%; */}
+        background-image: url("https://user-images.githubusercontent.com/20836468/115257250-2ec38600-a130-11eb-8964-ce296652a0b1.jpg");
     }
 
     .grid-item {
