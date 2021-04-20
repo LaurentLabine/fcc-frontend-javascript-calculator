@@ -39,77 +39,62 @@ export default createGlobalStyle`
 
     #calculator {
         display: flex;
-        position: absolute;
         padding: 10px;
         background-color: black;
-        width: 40vw;
+        width: 400px;
+        ${'' /* min-height: 400px; */}
         border-radius: 5px;
         border: 2px solid white;
-        text-align: center;
         background-size: 100%;
         background-position: center;
     }
 
-    #outerDisplay {
-        min-height: 62px;
-        width: 40vw;
-        grid-column : 1/5;
-        background-color: white;
-        color: green;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-    .display-grid-item {
-        display: block;
-        text-align: center;
-        vertical-align: center;
-    }
-
-    #uppderDisplay{
-        min-height: 20px;
-        font-family: digital;
-        font-size: 20px;
-        color: orange;
-        text-align: right;
-        vertical-align: text-top;
-        line-height: 20px;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    } 
-
-    #display{
-    color: light-green;
-    } 
-
-
     #outer {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        ${'' /* grid-gap: 10px; */}
         position: relative;
-        left:0;
-        right:0;
+        display: grid;
+        grid-gap: 10px;
         width:100%;
         background-image: url("https://user-images.githubusercontent.com/20836468/115257250-2ec38600-a130-11eb-8964-ce296652a0b1.jpg");
     }
 
+    #outerDisplay {
+        display: inline-block;
+        max-width: 400px;
+        grid-column : 1/5;
+        background-color: white;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        text-align: right;
+    }
+
+    #upperDisplay{
+        min-height: 30px;
+        font-family: digital;
+        font-size: 30px;
+        color: orange;
+    }
+
+    .display-grid-item{
+        font-size: 50px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    } 
+
     .grid-item {
         background-color: rgba(255, 255, 255, 0.8);
         border: 1px solid rgba(0, 0, 0, 0.8);
-        height: 100%;
         font-size: 30px;
         text-align: center;
         vertical-align: center;
+        min-height: 80px;
     }
-
-
 
     #clear {
         grid-column: 1 / 3;
     }
 
     #equals {
-        grid-row: 5/7;
+        grid-row: 5/7 !important;
         grid-column: 4;
     }
 

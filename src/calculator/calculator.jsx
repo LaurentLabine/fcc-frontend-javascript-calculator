@@ -82,7 +82,7 @@ class Calculator extends Component {
     this.state = {
       x: '', // Current Number Being treated
       data: [], // Formula
-      display: '', // displayed Input
+      display: '0', // displayed Input
       memory: '', // Upper Display
     };
 
@@ -233,13 +233,9 @@ class Calculator extends Component {
       <div id="calculator">
         <GlobalStyle />
         <div id="outer">
-          <div id="outerDisplay" className="grid-item">
-            <div id="uppderDisplay" className="display-grid-item">
-              {this.state.memory}
-            </div>
-            <div id="display" className="display-grid-item">
-              {this.state.display}
-            </div>
+          <div id="outerDisplay" className="display-grid-item">
+            <div id="upperDisplay">{this.state.memory}</div>
+            <div id="display">{this.state.display}</div>
           </div>
           <Operator id="clear" operation="CL" handler={this.handleInput} />
           <Operator id="divide" operation="/" handler={this.handleInput} />
