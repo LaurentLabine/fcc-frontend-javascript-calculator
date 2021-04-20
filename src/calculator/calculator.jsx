@@ -111,16 +111,20 @@ class Calculator extends Component {
     let res = '';
     let arr = [];
 
+    console.log('State : ' + this.state.x);
+
     const evaluate = eval;
     switch (input) {
       case 'equals':
         str = this.filterResult(this.state.data.concat(this.state.x))
           .join('')
           .replace(/,/g, '');
-        res = evaluate(str);
-        console.log('RES : ' + res);
-
-        arr = [res];
+        try {
+          res = evaluate(str);
+          arr = [res];
+        } catch (error) {
+          res = 'ERROR';
+        }
         this.setState({
           display: res,
           data: arr,
@@ -233,7 +237,8 @@ class Calculator extends Component {
         <GlobalStyle />
         <div id="outer">
           <div id="display" className="grid-item">
-            <p>{this.state.display}</p>
+            <div id="memory">{this.state.display}</div>
+            <div id="current">{this.state.display}</div>
           </div>
           <Operator id="clear" operation="CL" handler={this.handleInput} />
           <Operator id="divide" operation="/" handler={this.handleInput} />

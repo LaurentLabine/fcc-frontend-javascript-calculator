@@ -25,7 +25,7 @@ export default createGlobalStyle`
         display: flex;
         position: absolute;
         padding: 10px;
-        height: 22rem;
+        height: 20rem;
         width: 20rem;
         border-radius: 5px;
         border: 2px solid white;
@@ -39,16 +39,21 @@ export default createGlobalStyle`
         grid-column : 1/5;
         font-family: 'Bubblegum Sans', cursive;
         font-size: 25px;
-        height: 5rem;
         background-color: #1D16A0;
         color: green;
     }
 
-    #display p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
+    #display #memory{
+        text-align: right;
+        font-size: 20px;
+        height: 24px;
+        ${'' /* background-color: black; */}
+    } 
+
+    #display #current{
+    color: light-green;
+    height: 30px;
+    } 
 
 
     #outer {
@@ -59,7 +64,7 @@ export default createGlobalStyle`
         left:0;
         right:0;
         width:100%;
-        height: 75%;
+        ${'' /* height: 80%; */}
     }
 
     .grid-item {
