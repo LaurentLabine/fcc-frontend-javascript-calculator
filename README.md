@@ -14,12 +14,6 @@ LightHouse audits have also been added to workflow using github actions in order
 
 It answers the technical requirements as stated in the challenge located here: https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-javascript-calculator with the tests that can be run from the page itself.
 
-Additional features include:
-
-* On/Off switch
-* Bank 1/2 selector switch
-* Volume slider
-
 ## Possible Improvements
 
 While being functional, the project could benefit a refactor of the logic and splitting of the multiple components to make it more reacty.
