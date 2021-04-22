@@ -1,6 +1,6 @@
 # freeCodeCamp Front End Development Libraries Projects - Project 4 - Build a Javascript Calculator
 
-See the result here: https://laurentlabine.github.io/fcc-javascript-calculator/
+See the result here: https://laurentlabine.github.io/fcc-frontendlib-javascript-calculator/
 
 I built this project as part of freeCodeCamp's curriculum to learn and practice Responsive Web Design.
 
