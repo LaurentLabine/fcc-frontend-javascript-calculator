@@ -241,9 +241,9 @@ class Calculator extends Component {
             <div id="upperDisplay">{this.state.memory}</div>
             <div id="display">{this.state.display}</div>
           </div>
-          <Operator id="clear" operation="CL" handler={this.handleInput} />
+          <Operator id="clear" operation="AC" handler={this.handleInput} />
           <Operator id="divide" operation="/" handler={this.handleInput} />
-          <Operator id="multiply" operation="*" handler={this.handleInput} />
+          <Operator id="multiply" operation="X" handler={this.handleInput} />
           <Digit value={7} handler={this.handleInput} />
           <Digit value={8} handler={this.handleInput} />
           <Digit value={9} handler={this.handleInput} />
