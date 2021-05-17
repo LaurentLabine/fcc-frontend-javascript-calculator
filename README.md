@@ -2,6 +2,8 @@
 
 See the result here: https://laurentlabine.github.io/fcc-frontend-javascript-calculator/
 
+Thumbnail accessible here : https://user-images.githubusercontent.com/20836468/118486221-a5e13f80-b719-11eb-88dd-c968f722190a.png
+
 I built this project as part of freeCodeCamp's curriculum to learn and practice Responsive Web Design.
 
 ## Technologies
